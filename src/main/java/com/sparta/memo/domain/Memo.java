@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @NoArgsConstructor
 @Getter
@@ -38,5 +39,5 @@ public class Memo extends Timestamped {
         this.title = requestDto.getTitle();
         this.pass = requestDto.getPass();
     }
-
+    
 }

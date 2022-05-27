@@ -6,4 +6,8 @@ import java.util.List;
 
 public interface MemoRepository extends JpaRepository<Memo, Long> {
     List<Memo> findAllByOrderByModifiedAtDesc();
+
+    Memo findByIdAndPass(Long id, String pass);
+
+
 }

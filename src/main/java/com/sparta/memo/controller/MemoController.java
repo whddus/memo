@@ -9,7 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
+
 
 @RestController
 @RequiredArgsConstructor
@@ -30,14 +30,19 @@ public class MemoController {
     }
 
     @GetMapping("/api/memos/{id}")
-    public Optional<Memo> getMemo(@PathVariable Long id) {
-        return memoRepository.findById(id);
-
+    public  Memo getMemo(@PathVariable Long id) {
+        Memo memo = memoRepository.findById(id).orElseThrow(
+                ()->new IllegalArgumentException("메모가 존재하지 않습니다.")
+        );
+        return memo;
     }
 
     @DeleteMapping("/api/memos/{id}")
-    public Long deleteMemo(@PathVariable Long id) {
-        memoRepository.deleteById(id);
+    public Long deleteMemo(@PathVariable Long id,@RequestBody MemoRequestDto requestDto) {
+        Memo memo = memoRepository.findByIdAndPass(id,requestDto.getPass());
+        if(memo == null){
+            throw new IllegalArgumentException("비밀번호가 맞지 않습니다.");
+        }else{memoRepository.deleteById(id);}
         return id;
     }
     @PutMapping("/api/memos/{id}")

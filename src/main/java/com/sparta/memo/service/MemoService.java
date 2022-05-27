@@ -17,13 +17,13 @@ public class MemoService {
     @Transactional
     public Long update(Long id, MemoRequestDto requestDto){
 
-        Memo memo = memoRepository.findById(id).orElseThrow(
-                () -> new IllegalArgumentException("비밀번호가 틀렸습니다.")
-        );
+        Memo memo = memoRepository.findByIdAndPass(id,requestDto.getPass());
+        if(memo == null){
+            throw new IllegalArgumentException("비밀번호가 맞지 않습니다.");
+        }
+
         memo.update(requestDto);
         return id;
     }
-
-
 
 }
