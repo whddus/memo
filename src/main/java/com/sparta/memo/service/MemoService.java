@@ -26,4 +26,15 @@ public class MemoService {
         return id;
     }
 
+    @Transactional
+    public Long delete(Long id, MemoRequestDto requestDto){
+
+        Memo memo = memoRepository.findByIdAndPass(id,requestDto.getPass());
+        if(memo == null){
+            throw new IllegalArgumentException("비밀번호가 맞지 않습니다.");
+        }else{memoRepository.deleteById(id);}
+
+        return id;
+    }
+
 }

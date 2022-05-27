@@ -10,4 +10,5 @@ public interface MemoRepository extends JpaRepository<Memo, Long> {
     Memo findByIdAndPass(Long id, String pass);
 
 
+
 }
