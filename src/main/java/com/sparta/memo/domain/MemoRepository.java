@@ -1,6 +1,5 @@
-package com.sparta.memo.repository;
+package com.sparta.memo.domain;
 
-import com.sparta.memo.domain.Memo;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

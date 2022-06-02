@@ -1,10 +1,10 @@
 package com.sparta.memo.domain;
 
-import com.sparta.memo.dto.MemoRequestDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @NoArgsConstructor
 @Getter
