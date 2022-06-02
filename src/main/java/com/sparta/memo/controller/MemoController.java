@@ -39,7 +39,10 @@ public class MemoController {
 
     @DeleteMapping("/api/memos/{id}")
     public Long deleteMemo(@PathVariable Long id,@RequestBody MemoRequestDto requestDto) {
-        memoService.delete(id,requestDto);
+        Memo memo = memoRepository.findByIdAndPass(id,requestDto.getPass());
+        if(memo == null){
+            throw new IllegalArgumentException("비밀번호가 맞지 않습니다.");
+        }else{memoRepository.deleteById(id);}
         return id;
     }
     @PutMapping("/api/memos/{id}")
