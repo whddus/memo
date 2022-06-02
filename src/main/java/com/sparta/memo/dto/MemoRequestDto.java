@@ -1,4 +1,4 @@
-package com.sparta.memo.domain;
+package com.sparta.memo.dto;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
